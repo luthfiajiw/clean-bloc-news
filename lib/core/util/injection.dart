@@ -12,18 +12,18 @@ Future<void> initDependencies() async {
   locator.registerSingleton<Dio>(Dio());
 
   // Dependencies
-  locator.registerSingleton<NewsApiService>(NewsApiService(locator()));
+  locator.registerSingleton<NewsApiService>(NewsApiService(locator.get<Dio>()));
   locator.registerSingleton<ArticleRepository>(
-    ArticleRepositoryImpl(locator())
+    ArticleRepositoryImpl(locator.get<NewsApiService>())
   );
 
   // UseCases
   locator.registerSingleton<GetArticleUseCase>(
-    GetArticleUseCase(locator())
+    GetArticleUseCase(locator.get<ArticleRepository>())
   );
 
   // Blocs
   locator.registerFactory<RemoteNewsBloc>(() {
-    return RemoteNewsBloc(locator());
+    return RemoteNewsBloc(locator.get<GetArticleUseCase>());
   });
 }

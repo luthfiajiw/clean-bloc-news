@@ -15,7 +15,8 @@ class RemoteNewsBloc extends Bloc<RemoteNewsEvent, RemoteNewsState> {
   Future<void> onGetNews(RemoteGetNews event, Emitter<RemoteNewsState> emit) async {
     final dataState = await _getArticleUseCase();
 
-    if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
+    if (dataState is DataSuccess && dataState.data != null) {
+      print("SUCCESS ${dataState.data.runtimeType}");
       emit(
         RemoteNewsDone(dataState.data!)
       );

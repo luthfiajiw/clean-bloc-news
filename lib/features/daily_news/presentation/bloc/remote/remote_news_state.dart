@@ -3,13 +3,13 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class RemoteNewsState extends Equatable {
-  final List<ArticleEntity>? articles;
+  final ArticleResponseEntity? response;
   final DioException? exception;
 
-  const RemoteNewsState({this.articles, this.exception});
+  const RemoteNewsState({this.response, this.exception});
 
   @override
-  List<Object> get props => [articles!, exception!];
+  List<Object> get props => [response!, exception!];
 }
 
 class RemoteNewsLoading extends RemoteNewsState {
@@ -17,7 +17,7 @@ class RemoteNewsLoading extends RemoteNewsState {
 }
 
 class RemoteNewsDone extends RemoteNewsState {
-  const RemoteNewsDone(List<ArticleEntity> articles) : super(articles: articles);
+  const RemoteNewsDone(ArticleResponseEntity response) : super(response: response);
 }
 
 class RemoteNewsError extends RemoteNewsState {
