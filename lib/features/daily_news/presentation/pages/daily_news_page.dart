@@ -11,37 +11,34 @@ class DailyNewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<RemoteNewsBloc>(
-      create: (context) => locator()..add(const RemoteGetNews()),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Daily News",
-            style: TextStyle(
-              color: Colors.black
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Daily News",
+          style: TextStyle(
+            color: Colors.black
           ),
         ),
-        body: BlocBuilder<RemoteNewsBloc, RemoteNewsState>(
-          builder: (context, state) {
-            if (state is RemoteNewsLoading) {
-              return const Center(
-                child: CupertinoActivityIndicator(),
-              );
-            }
-            if (state is RemoteNewsError) {
-              return const Center(
-                child: Text("ERROR"),
-              );
-            }
-            if (state is RemoteNewsDone) {
-              return const Center(
-                child: Text("SUCCESS"),
-              );
-            }
-            return const SizedBox();
-          },
-        ),
+      ),
+      body: BlocBuilder<RemoteNewsBloc, RemoteNewsState>(
+        builder: (context, state) {
+          if (state is RemoteNewsLoading) {
+            return const Center(
+              child: CupertinoActivityIndicator(),
+            );
+          }
+          if (state is RemoteNewsError) {
+            return const Center(
+              child: Text("ERROR"),
+            );
+          }
+          if (state is RemoteNewsDone) {
+            return const Center(
+              child: Text("SUCCESS"),
+            );
+          }
+          return const SizedBox();
+        },
       ),
     );
   }

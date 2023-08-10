@@ -16,7 +16,6 @@ class RemoteNewsBloc extends Bloc<RemoteNewsEvent, RemoteNewsState> {
     final dataState = await _getArticleUseCase();
 
     if (dataState is DataSuccess && dataState.data != null) {
-      print("SUCCESS ${dataState.data.runtimeType}");
       emit(
         RemoteNewsDone(dataState.data!)
       );
