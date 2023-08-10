@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<RemoteNewsBloc>(
-          create: (context) => locator.get<RemoteNewsBloc>()..add(const RemoteGetNews()),
+          create: (context) => locator.get<RemoteNewsBloc>(),
         )
       ],
       child: MaterialApp(
