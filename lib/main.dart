@@ -1,6 +1,5 @@
 import 'package:clean_bloc_news/core/util/injection.dart';
 import 'package:clean_bloc_news/features/daily_news/presentation/bloc/remote/remote_news_bloc.dart';
-import 'package:clean_bloc_news/features/daily_news/presentation/bloc/remote/remote_news_event.dart';
 import 'package:clean_bloc_news/features/daily_news/presentation/pages/daily_news_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

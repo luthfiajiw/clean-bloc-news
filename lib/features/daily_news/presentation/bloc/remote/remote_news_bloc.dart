@@ -13,7 +13,7 @@ class RemoteNewsBloc extends Bloc<RemoteNewsEvent, RemoteNewsState> {
   }
 
   Future<void> onGetNews(RemoteGetNews event, Emitter<RemoteNewsState> emit) async {
-    print("JALAN");
+    emit(const RemoteNewsLoading());
     final dataState = await _getArticleUseCase();
 
     if (dataState is DataSuccess && dataState.data != null) {

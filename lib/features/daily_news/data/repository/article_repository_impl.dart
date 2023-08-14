@@ -17,7 +17,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
     try {
       final httpResponse = await _newsApiService.getNewsArticles(
         apiKey: newsAPIKey,
-        country: "id",
+        country: "us",
         category: 'general'
       );
 

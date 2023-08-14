@@ -1,6 +1,8 @@
+import 'package:clean_bloc_news/features/daily_news/domain/entities/article_entity.dart';
 import 'package:clean_bloc_news/features/daily_news/presentation/bloc/remote/remote_news_bloc.dart';
 import 'package:clean_bloc_news/features/daily_news/presentation/bloc/remote/remote_news_event.dart';
 import 'package:clean_bloc_news/features/daily_news/presentation/bloc/remote/remote_news_state.dart';
+import 'package:clean_bloc_news/features/daily_news/presentation/widgets/article_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,8 +45,13 @@ class _DailyNewsPageState extends State<DailyNewsPage> {
             );
           }
           if (state is RemoteNewsDone) {
-            return const Center(
-              child: Text("SUCCESS"),
+            return ListView.builder(
+              itemCount: state.response!.articles!.length,
+              itemBuilder: (context, index) {
+                ArticleEntity entity = state.response!.articles![index];
+                
+                return ArticleTile(articleEntity: entity);
+              },
             );
           }
           return const SizedBox();
